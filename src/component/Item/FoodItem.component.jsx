@@ -5,8 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { addToCart, decrementItem, incrementItem, removeFromCart } from '../../redux/action/Cart.action';
 
-const FoodItem = ({ item }) => {
-    const navigation = useNavigation();
+const FoodItem = ({ item, navigation }) => {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
     const selectedItem = useMemo(() => {
@@ -28,8 +27,7 @@ const FoodItem = ({ item }) => {
 
 
     return (
-        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('FoodItem', { item })} >
-
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('FoodScreen', { item })} >
             <Image style={styles.image} source={{ uri: item.image }} />
             <View style={styles.details}>
                 <Text style={styles.name}>{item.name}</Text>

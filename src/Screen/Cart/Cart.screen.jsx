@@ -4,12 +4,11 @@ import Cart from "../../component/Cart/Cart.component";
 import { Platform } from "react-native";
 
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Cart
-            />
+            <Cart navigation={navigation} />
         </SafeAreaView>
     );
 };

@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrementItem, incrementItem, setCartItems } from '../../redux/action/Cart.action';
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
     const cart = useSelector((state) => state.cart);
     const cartItems = cart.cartItems
-    const navigation = useNavigation();
 
 
     const dispatch = useDispatch();
@@ -71,7 +69,7 @@ const Cart = () => {
 
                                 {
                                     cartItems.map((item) => (
-                                        <TouchableOpacity style={styles.cartItem} key={item.id} onPress={() => navigation.navigate("FoodItemScreen", { item })}>
+                                        <TouchableOpacity style={styles.cartItem} key={item.id} onPress={() => navigation.navigate("FoodScreen", { item })}>
                                             <Image source={{ uri: item.image }} style={styles.itemImage} />
                                             <View style={styles.itemDetails}>
                                                 <Text style={styles.itemTitle}>{item.name}</Text>
@@ -134,7 +132,8 @@ const styles = StyleSheet.create({
     },
     cartItems: {
         flex: 1,
-        padding: 10
+        paddingVertical: 10,
+        paddingHorizontal: 5,
     },
     cartItem: {
         flexGrow: 1,

@@ -1,45 +1,17 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../../../Screen/Home/Home.screen";
-import CartScreen from "../../../Screen/Cart/Cart.screen";
-import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, View, Text } from "react-native";
-import { useState } from "react";
+import { StyleSheet, View, Text } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Ionicons } from '@expo/vector-icons'
 
-import FoodScreen from "../../../Screen/Food/Food.screen";
+
+import theme from '../../../theme'
+import HomeNavigator from './Home.tab'
+import CartNavigator from './Cart.tab'
 import { useDispatch, useSelector } from "react-redux";
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+import HomeScreen from '../../../Screen/Home/Home.screen'
+import CartScreen from '../../../Screen/Cart/Cart.screen'
+const Tab = createBottomTabNavigator()
 
-function HomeStack() {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <Stack.Screen name='HomeScreen' component={HomeScreen} />
-            <Stack.Screen name='FoodItem' component={FoodScreen} />
-            <Stack.Screen name='CartStack' component={CartScreen} />
-        </Stack.Navigator>
-    );
-}
-
-
-function CartStack() {
-    return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <Stack.Screen name='CartScreen' component={CartScreen} />
-            <Stack.Screen name='FoodItemScreen' component={FoodScreen} />
-        </Stack.Navigator>
-    );
-}
-
-function MainTabNavigator() {
+const TabsNavigator = () => {
     const cart = useSelector(state => state.cart);
     const totalQuantity = cart.cartItems.reduce((sum, item) => sum + item.quantity, 0);
     const quantity = totalQuantity ? totalQuantity : 0;
@@ -85,11 +57,29 @@ function MainTabNavigator() {
                 },
             })}
         >
-            <Tab.Screen name='Home' component={HomeStack} />
-            <Tab.Screen name='Cart' component={CartStack} />
+            <Tab.Screen name='Home' component={HomeNavigator} />
+            <Tab.Screen name='Cart' component={CartNavigator} />
 
         </Tab.Navigator>
-    );
+    )
 }
 
-export default MainTabNavigator;
+const styles = StyleSheet.create({
+    tabBar: {
+        backgroundColor: theme.colors.white,
+        borderTopWidth: 0,
+        shadowOffset: {
+            width: 0,
+            height: 10
+        },
+        shadowColor: theme.colors.black,
+        shadowOpacity: 0.1,
+        shadowRadius: 24,
+        elevation: 5
+    },
+    tabBarLabel: {
+        fontFamily: theme.fonts.type.semiBold
+    }
+})
+
+export default TabsNavigator

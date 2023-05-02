@@ -12,8 +12,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrementItem, incrementItem } from '../../redux/action/Cart.action';
 
-const SingleFoodItem = () => {
-    const navigation = useNavigation();
+const SingleFoodItem = ({ navigation }) => {
     const route = useRoute();
     const [continueReading, setContinueReading] = useState(false);
     const item = route.params.item

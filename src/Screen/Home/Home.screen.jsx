@@ -5,13 +5,13 @@ import Hero from '../../component/Hero/Hero.component';
 import MenuList from '../../component/Menu/FoodManuList.component';
 import SearchBar from '../../component/Search/Search.component';
 import { Platform } from 'react-native';
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Header />
             <Hero />
             <SearchBar />
-            <MenuList />
+            <MenuList navigation={navigation} />
         </SafeAreaView >
     );
 }

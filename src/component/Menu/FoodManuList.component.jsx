@@ -12,7 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import MenuData from "../../dummy/Data/MenuData.js";
 import FoodItem from "../Item/FoodItem.component.jsx";
 
-const MenuList = () => {
+const MenuList = ({ navigation }) => {
     const [selectedMenu, setSelectedMenu] = useState(MenuData[0].id);
 
     const handleMenuPress = (menu) => {
@@ -21,7 +21,7 @@ const MenuList = () => {
 
     const RenderItem = ({ item }) => {
         console.log(item);
-        return <FoodItem item={item} />;
+        return <FoodItem navigation={navigation} item={item} />;
     };
 
     return (

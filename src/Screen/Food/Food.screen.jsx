@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import SingleFoodItem from '../../component/SingleFoodItem/SingleFoodItem.component';
 import { Platform } from "react-native";
-const FoodScreen = () => {
+const FoodScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <SingleFoodItem />
+            <SingleFoodItem navigation={navigation} />
         </SafeAreaView>
     );
 }
